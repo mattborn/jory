@@ -1,0 +1,7 @@
+{
+  "name": "jory",
+  "scripts": {
+    "build": "node build.js",
+    "watch": "node watch.js"
+  }
+}
