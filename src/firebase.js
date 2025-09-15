@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
-import { get, getDatabase, onValue, push, ref, serverTimestamp, set } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
+import { get, getDatabase, onValue, push, ref, serverTimestamp, set, update } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
 
 const app = initializeApp({
   apiKey: "AIzaSyA5Lbelr0RkaqYEjXGmP7b3GCKgYf3ZETA",
@@ -12,4 +12,4 @@ const app = initializeApp({
 
 const db = getDatabase(app);
 window.firebaseDb = db;
-window.firebaseUtils = { get, onValue, push, ref, serverTimestamp, set };
+window.firebaseUtils = { get, onValue, push, ref, serverTimestamp, set, update };

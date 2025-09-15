@@ -6,19 +6,16 @@ const path = require('path')
 const srcDir = 'src'
 const buildDir = 'build'
 
-// Create build directory
 fs.rmSync(buildDir, { recursive: true, force: true })
 fs.mkdirSync(buildDir, { recursive: true })
 
-// Read layout template
 const layoutTemplate = fs.readFileSync(path.join(srcDir, 'layout.html'), 'utf8')
 
-// Determine base href based on environment
 const isDevelopment = process.argv.includes('--dev')
-const baseHref = isDevelopment ? '<base href="/" />' : '<base href="/jory/" />'
-const layout = layoutTemplate.replace('{base}', baseHref)
+const basePath = isDevelopment ? '/' : '/jory/'
 
-// Process all files
+const layout = layoutTemplate.replace(/{base}/g, basePath)
+
 fs.readdirSync(srcDir).forEach(file => {
   const srcPath = path.join(srcDir, file)
   
@@ -29,7 +26,6 @@ fs.readdirSync(srcDir).forEach(file => {
     const html = layout.replace('{content}', content)
     
     if (file === 'index.html') {
-      // Write index.html to root
       fs.writeFileSync(path.join(buildDir, file), html)
       console.log(`Built ${file}`)
     } else {
